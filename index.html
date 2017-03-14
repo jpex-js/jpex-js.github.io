@@ -5,6 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jpex</title>
+  <script>
+    (function(){
+      var redirect = sessionStorage.redirect;
+      delete redirect sessionStorage.redirect;
+      if (redirect && redirect !== window.location.href){
+        history.replaceState(null, null, redirect);
+      }
+    }());
+  </script>
 </head>
 <body>
   <div id="app">: )</div>

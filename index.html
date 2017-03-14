@@ -8,7 +8,7 @@
   <script>
     (function(){
       var redirect = sessionStorage.redirect;
-      delete redirect sessionStorage.redirect;
+      delete sessionStorage.redirect;
       if (redirect && redirect !== window.location.href){
         history.replaceState(null, null, redirect);
       }

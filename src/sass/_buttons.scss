@@ -1,0 +1,49 @@
+.btn{
+  display: inline-block;
+  text-align : center;
+  background-color : #FFF;
+  color : lighten(#000, 10%);
+  padding : 0.5rem 1rem;
+  border : 1px solid darken(#FFF, 10%);
+  text-decoration : none;
+  font-size: 1em;
+  font-family: inherit;
+  cursor : pointer;
+  border-radius : 3px;
+  outline : none;
+
+  .btn-icon{
+    height : 1.5rem;
+    margin : -0.5rem 0 -0.5rem -0.5rem;
+  }
+
+  &:hover{
+    background-color : darken(#FFF, 5%);
+  }
+  &:active{
+    border-style : inset;
+    background-color : darken(#FFF, 10%);
+  }
+  &:focus{
+    border-color : darken(#FFF, 30%);
+  }
+
+  &.primary{
+    background-color: lighten($primary, 5%);
+    color : #FFF;
+    border-color : transparent;
+    &:hover{
+      background-color: $primary;
+    }
+    &:active{
+      background-color: darken($primary, 5%);
+    }
+    &:focus{
+      border-color : darken($primary, 10%);
+    }
+  }
+}
+
+[role="button"]{
+  cursor : pointer;
+}

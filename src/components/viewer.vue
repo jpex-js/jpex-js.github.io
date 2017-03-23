@@ -1,5 +1,5 @@
 <template>
-  <div class="guide grid">
+  <div class="viewer grid">
     <div class="links cell sm-hide md-5 lg-3">
       <ul>
         <li v-for="link in links">
@@ -22,7 +22,7 @@
 </template>
 <style lang="sass" scoped>
 @import "~sass/variables";
-.guide{
+.viewer{
   height : 100%;
   padding : 0.5rem 0;
   .links{
@@ -51,6 +51,11 @@ import debounce from 'src/utils/debounce';
 import hljs from 'src/utils/hljs';
 
 export default {
+  props : {
+    type : {
+      required : true
+    }
+  },
   data(){
     return {
       anchorElements : []
@@ -59,11 +64,11 @@ export default {
   computed : {
     content(){
       const path = this.$route.params.contentId;
-      let content = require('content/guide/' + path + '.md');
+      let content = require('content/' + this.type + '/' + path + '.md');
       return content;
     },
     links(){
-      const contentList = routes.find(r => r.path === '/guide/:contentId').contentList;
+      const contentList = routes.find(r => r.path === '/' + this.type + '/:contentId').contentList;
       const content = Object.keys(contentList).map(key => {
         return {path : key, name : contentList[key]};
       });
@@ -91,7 +96,7 @@ export default {
       this.anchorElements = Array.prototype.slice.call(child.querySelectorAll('h3,[anchor]'));
     },
     makeLink(link){
-      return '/guide/' + link.path;
+      return ['', this.type, link.path].join('/');
     },
     makeHash(link, hash){
       return [this.makeLink(link), hash.path].filter(n => n).join('#');

@@ -29,7 +29,8 @@
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config ./build/webpack.dev.config.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config ./build/webpack.dev.config.js",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules --config ./build/webpack.prod.config.js"
   },
   "repository": {
     "type": "git",

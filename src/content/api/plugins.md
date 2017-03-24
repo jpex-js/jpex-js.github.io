@@ -16,12 +16,12 @@ Whether to display a console warning when the plugin is used multiple times.
 `Function(options)`
 This function is called when the plugin is `use`d on a Jpex class. It takes an options object with the following properties:
 
-### install options
-#### Jpex
+## install options
+### Jpex
 `Class`  
 The original Jpex class the plugin was used on.
 
-#### on
+### on
 `Function(eventName, function)`
 Attaches an event listener to one of the below hooks. The function receives a `payload` object that contains properties from the event
 

@@ -1,7 +1,8 @@
 <template>
-  <div class="viewer grid">
-    <div class="links cell sm-hide md-5 lg-3">
-      <ul>
+  <div class="viewer grid sm-column">
+    <div class="links cell md-5 lg-3">
+      <button class="btn md-hide lg-hide" @click="showMenu=!showMenu">=</button>
+      <ul :class="{showMenu : showMenu}">
         <li v-for="link in links">
           <router-link :to="makeLink(link)" :class="{active : isActiveLink(link)}">
             {{link.name}}
@@ -38,6 +39,20 @@
     .sub-links{
       color : lighten(#000, 60%);
     }
+
+    > ul{
+      @media(max-width:$sm-max){
+        display : none;
+        position:absolute;
+        background-color:#fff;
+        margin:0;
+        border : 1px solid lighten($gray, 20%);
+        width : 75%;
+        &.showMenu{
+          display : block;
+        }
+      }
+    }
   }
   .view{
     padding : 1rem;
@@ -54,16 +69,20 @@ export default {
   props : {
     type : {
       required : true
+    },
+    contentId : {
+      required : true
     }
   },
   data(){
     return {
-      anchorElements : []
+      anchorElements : [],
+      showMenu : false
     };
   },
   computed : {
     content(){
-      const path = this.$route.params.contentId;
+      const path = this.contentId;
       let content = require('content/' + this.type + '/' + path + '.md');
       return content;
     },
@@ -75,6 +94,7 @@ export default {
       return content;
     },
     anchors(){
+      debugger;
       return this.anchorElements.map(el => {
         const path = el.id;
         const name = el.getAttribute('anchor') || el.getAttribute('title') || el.innerText;

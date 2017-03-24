@@ -5,7 +5,8 @@
 </template>
 <style lang="sass" scoped>
 .app-content{
-  overflow : hidden;
+  overflow-x : hidden;
+  overflow-y : auto;
 }
 </style>
 <script>

@@ -15,8 +15,11 @@ export default [
     path : '/guide/:contentId',
     name : 'Guide',
     component : require('components/viewer'),
-    props : {
-      type : 'guide'
+    props(route){
+      return {
+        contentId : route.params.contentId,
+        type : 'guide'
+      }
     },
     contentList : {
       'intro' : 'Introduction',
@@ -37,8 +40,11 @@ export default [
     path : '/api/:contentId',
     name : 'API',
     component : require('components/viewer'),
-    props : {
-      type : 'api'
+    props(route){
+      return {
+        contentId : route.params.contentId,
+        type : 'api'
+      };
     },
     contentList : {
       'jpex' : 'Jpex',
@@ -50,6 +56,31 @@ export default [
       'trigger' : 'Jpex.$trigger',
       'defaults' : 'Default Factories',
       'plugins' : 'Plugins'
+    }
+  },
+  {
+    path : '/plugins',
+    name : 'Plugins',
+    redirect : '/plugins/plugins'
+  },
+  {
+    hidden : true,
+    path : '/plugins/:contentId',
+    name : 'Plugins',
+    component : require('components/viewer'),
+    props(route){
+      return {
+        contentId : route.params.contentId,
+        type : 'plugins'
+      };
+    },
+    contentList : {
+      'plugins' : 'Plugins',
+      'jpex-web' : 'jpex-web',
+      'jpex-node' : 'jpex-node',
+      'jpex-defaults' : 'jpex-defaults',
+      'jpex-mocks' : 'jpex-mocks',
+      'jpex-folder' : 'jpex-folder'
     }
   }
 ];
